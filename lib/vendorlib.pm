@@ -10,7 +10,7 @@ vendorlib - Use Only Core and Vendor Libraries in @INC
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -31,6 +31,9 @@ unpackaged versions of modules.
 
 To that end, this pragma will replace your C<@INC> with only the core and vendor
 C<@INC> paths, ignoring site_perl and C<$ENV{PERL5LIB}> entirely.
+
+It is recommended that you put C<use vendorlib;> as the first statement in your
+program, before even C<use strict;> and C<use warnings;>.
 
 =cut
 
