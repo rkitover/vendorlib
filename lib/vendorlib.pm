@@ -86,6 +86,8 @@ L<http://search.cpan.org/dist/vendorlib/>
 
 mxey and jawnsy on oftc #debian-perl helped to hash out the design for this.
 
+ribasushi pointed out that @INC order matters.
+
 =head1 AUTHOR
 
 Rafael Kitover, C<< <rkitover at cpan.org> >>
