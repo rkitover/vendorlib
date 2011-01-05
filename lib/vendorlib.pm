@@ -10,15 +10,15 @@ vendorlib - Use Only Core and Vendor Libraries in @INC
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
     #!/usr/bin/perl
 
+    use vendorlib;
     use strict;
     use warnings;
-    use vendorlib;
     use SomeModule; # will only search in core and vendor paths
     ...
 
@@ -35,16 +35,14 @@ C<@INC> paths, ignoring site_perl and C<$ENV{PERL5LIB}> entirely.
 =cut
 
 sub import {
-    my @paths = @Config{qw/
-        archlib archlibexp installarchlib installvendorarch installvendorlib
-        privlib privlibexp vendorarch vendorarchexp vendorlib vendorlibexp
-    /};
+    my @paths = ('/etc/perl', @Config{qw/
+        vendorarch
+        vendorlib
+        archlib
+        privlib
+    /});
 
-    my %paths;
-    @paths{@paths} = ();
-    delete $paths{''}; # just in case
-
-    @INC = sort keys %paths;
+    @INC = @paths;
 }
 
 =head1 BUGS

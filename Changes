@@ -1,4 +1,9 @@
 Revision history for vendorlib
 
+0.02  2011-01-05 09:00:06
+    - Use correct order in @INC.
+    - Add /etc/perl as a special case for Debian, should be harmless on other
+      systems.
+
 0.01  2011-01-05 04:30:06
     - Initial release.
