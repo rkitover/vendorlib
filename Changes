@@ -1,5 +1,8 @@
 Revision history for vendorlib
 
+0.05  2011-01-06 11:04:51
+    - add repository to META.yml
+
 0.04  2011-01-05 10:01:22
     - another POD update
 

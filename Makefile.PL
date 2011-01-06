@@ -16,4 +16,6 @@ realclean_files 'README';
 auto_provides;
 auto_install;
 
+resources repository => 'git://github.com/rkitover/vendorlib.git';
+
 WriteAll;
