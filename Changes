@@ -1,5 +1,8 @@
 Revision history for vendorlib
 
+0.06  2011-01-09 12:22:12
+    - added checks for loading core modules in t/01basic.t
+
 0.05  2011-01-06 11:04:51
     - add repository to META.yml
 
