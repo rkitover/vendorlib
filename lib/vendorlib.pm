@@ -10,7 +10,7 @@ vendorlib - Use Only Core and Vendor Libraries in @INC
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
@@ -44,6 +44,18 @@ sub import {
         archlib
         privlib
     /});
+
+    # expand tildes
+    for my $path (@paths) {
+        if ($path =~ m{^~/+}) {
+            my $home = (getpwuid($<))[7];
+            $path =~ s|^~/+|${home}/|;
+        }
+        elsif (my ($user) = $path =~ /^~(\w+)/) {
+            my $home = (getpwnam($user))[7];
+            $path =~ s|^~${user}/+|${home}/|;
+        }
+    }
 
     @INC = @paths;
 }
