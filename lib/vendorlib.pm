@@ -10,7 +10,7 @@ vendorlib - Use Only Core and Vendor Libraries in @INC
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
@@ -38,22 +38,45 @@ program, before even C<use strict;> and C<use warnings;>.
 =cut
 
 sub import {
-    my @paths = ('/etc/perl', @Config{qw/
+    my @paths = (($^O ne 'MSWin32' ? ('/etc/perl') : ()), @Config{qw/
         vendorarch
         vendorlib
         archlib
         privlib
     /});
 
-    # expand tildes
-    for my $path (@paths) {
-        if ($path =~ m{^~/+}) {
-            my $home = (getpwuid($<))[7];
-            $path =~ s|^~/+|${home}/|;
+    # This grep MUST BE on copies of the paths to not trigger Config overload
+    # magic.
+    @paths = grep $_, @paths;
+
+    # remove duplicates
+    my @result;
+    while (my $path = shift @paths) {
+        if (@paths && $path eq $paths[0]) {
+            # ignore
         }
-        elsif (my ($user) = $path =~ /^~(\w+)/) {
-            my $home = (getpwnam($user))[7];
-            $path =~ s|^~${user}/+|${home}/|;
+        else {
+            push @result, $path;
+        }
+    }
+    @paths = @result;
+
+    # fixup slashes for @INC on Win32
+    if ($^O eq 'MSWin32') {
+        s{\\}{/}g for @paths;
+    }
+
+    # expand tildes
+    if ($^O ne 'MSWin32') {
+        for my $path (@paths) {
+            if ($path =~ m{^~/+}) {
+                my $home = (getpwuid($<))[7];
+                $path =~ s|^~/+|${home}/|;
+            }
+            elsif (my ($user) = $path =~ /^~(\w+)/) {
+                my $home = (getpwnam($user))[7];
+                $path =~ s|^~${user}/+|${home}/|;
+            }
         }
     }
 

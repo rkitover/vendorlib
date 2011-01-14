@@ -16,7 +16,9 @@ eval "require Foo;";
 ok $@, '@INC scrubbed';
 
 # test bare tilde expansion
-{
+SKIP: {
+    skip 'no tilde expansion on Win32', 1 if $^O eq 'MSWin32';
+
     local @INC;
 
     my %config = %Config;
@@ -33,7 +35,9 @@ ok $@, '@INC scrubbed';
 }
 
 # test tilde expansion with user name
-{
+SKIP: {
+    skip 'no tilde expansion on Win32', 1 if $^O eq 'MSWin32';
+
     local @INC;
 
     my %config = %Config;
