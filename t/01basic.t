@@ -25,11 +25,11 @@ SKIP: {
 
     *vendorlib::Config = \%config;
 
-    local $config{vendorarch} = '~//foo';
+    local $config{vendorarch} = '~/';
 
     vendorlib->import;
 
-    my $expanded = (getpwuid($<))[7] . '/foo';
+    my $expanded = (getpwuid($<))[7] . '/';
 
     is $INC[1], $expanded, 'bare tilde expansion';
 }
@@ -46,11 +46,11 @@ SKIP: {
 
     my $whoami = (getpwuid($<))[0];
 
-    local $config{vendorarch} = "~${whoami}//foo";
+    local $config{vendorarch} = "~${whoami}/";
 
     vendorlib->import;
 
-    my $expanded = (getpwuid($<))[7] . '/foo';
+    my $expanded = (getpwuid($<))[7] . '/';
 
     is $INC[1], $expanded, 'tilde expansion with user name';
 }

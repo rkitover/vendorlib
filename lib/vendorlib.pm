@@ -10,7 +10,7 @@ vendorlib - Use Only Core and Vendor Libraries in @INC
 
 =cut
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 =head1 SYNOPSIS
 
@@ -79,6 +79,10 @@ sub import {
             }
         }
     }
+
+    # remove any directories that don't actually exist
+    # this will also remove /etc/perl on non-Debian systems
+    @paths = grep -d, @paths;
 
     @INC = @paths;
 }

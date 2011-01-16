@@ -1,5 +1,8 @@
 Revision history for vendorlib
 
+0.09  2011-01-16 07:25:10
+    - do not use directories that don't exist
+
 0.08  2011-01-14 05:45:08
     - some fixes for Win32
 
