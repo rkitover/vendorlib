@@ -31,7 +31,9 @@ SKIP: {
 
     my $expanded = (getpwuid($<))[7] . '/';
 
-    is $INC[1], $expanded, 'bare tilde expansion';
+    shift @INC if $INC[0] eq '/etc/perl';
+
+    is $INC[0], $expanded, 'bare tilde expansion';
 }
 
 # test tilde expansion with user name
@@ -52,5 +54,7 @@ SKIP: {
 
     my $expanded = (getpwuid($<))[7] . '/';
 
-    is $INC[1], $expanded, 'tilde expansion with user name';
+    shift @INC if $INC[0] eq '/etc/perl';
+
+    is $INC[0], $expanded, 'tilde expansion with user name';
 }
