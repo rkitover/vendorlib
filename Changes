@@ -1,5 +1,9 @@
 Revision history for vendorlib
 
+0.11  2011-03-10 05:02:20
+    - patch from Gregor Herrmann in Debian to skip tilde expansion tests when
+      the home directory does not exist
+
 0.10  2011-01-17 02:36:15
     - fix a bug in the tests
 

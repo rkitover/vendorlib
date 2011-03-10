@@ -31,6 +31,8 @@ SKIP: {
 
     my $expanded = (getpwuid($<))[7] . '/';
 
+    skip 'home directory reported by getpwuid does not exist', 1 unless -d $expanded;
+
     shift @INC if $INC[0] eq '/etc/perl';
 
     is $INC[0], $expanded, 'bare tilde expansion';
@@ -53,6 +55,8 @@ SKIP: {
     vendorlib->import;
 
     my $expanded = (getpwuid($<))[7] . '/';
+
+    skip 'home directory reported by getpwuid does not exist', 1 unless -d $expanded;
 
     shift @INC if $INC[0] eq '/etc/perl';
 
