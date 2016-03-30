@@ -1,5 +1,8 @@
 Revision history for vendorlib
 
+{{$NEXT}}
+    - convert to dzil
+
 0.11  2011-03-10 05:02:20
     - patch from Gregor Herrmann in Debian to skip tilde expansion tests when
       the home directory does not exist

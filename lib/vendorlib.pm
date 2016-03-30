@@ -1,16 +1,15 @@
+use utf8;
 package vendorlib;
 
 use strict;
 use warnings;
 use Config;
 
+=encoding UTF-8
+
 =head1 NAME
 
 vendorlib - Use Only Core and Vendor Libraries in @INC
-
-=cut
-
-our $VERSION = '0.11';
 
 =head1 SYNOPSIS
 
@@ -87,63 +86,14 @@ sub import {
     @INC = @paths;
 }
 
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-vendorlib at rt.cpan.org>,
-or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=vendorlib>.  I will be
-notified, and then you'll automatically be notified of progress on your bug as I
-make changes.
-
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc vendorlib
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=vendorlib>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/vendorlib>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/vendorlib>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/vendorlib/>
-
-=back
-
 =head1 ACKNOWLEDGEMENTS
 
-mxey and jawnsy on oftc #debian-perl helped to hash out the design for this.
-
-ribasushi reviewed the initial version and pointed out that @INC order matters.
+Thanks to mxey, jawnsy and ribasushi for help with the design.
 
 =head1 AUTHOR
 
-Rafael Kitover, C<< <rkitover at cpan.org> >>
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2011 Rafael Kitover.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+Rafael Kitover <rkitover@gmail.com>
 
 =cut
 
-1; # End of vendorlib
+__PACKAGE__; # End of vendorlib
